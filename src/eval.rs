@@ -24,8 +24,8 @@ pub fn eval(term: &Term) -> Term {
         Term::Abs(input, body) => abs(input, *body.clone()),
         Term::App(left, right) => {
             let left_eval = eval(left);
-            let right_eval = eval(right);
-            
+            let right_eval = eval(right); // hier weiter
+
         }
     }
 }
