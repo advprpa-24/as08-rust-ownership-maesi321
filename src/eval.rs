@@ -11,14 +11,23 @@ use std::collections::HashSet;
 /// - An application evaluates the left side, then the right side, 
 ///   and applies the left side to the right side by substitution.
 ///   Examples: 
-///   `x` evaluates to `x`.
-///   `λx. x` evaluates to `λx. x`.
-///   `(λx. x) y` evaluates to `y`.
+///   `x` evaluates to `x`. <-- Variable
+///   `λx. x` evaluates to `λx. x`. <-- Abstraction
+///   `(λx. x) y` evaluates to `y`. <-- Application
 ///   `(λx. (λy. x)) z` evaluates to `λy. z`.
 ///   `(λx. (λy. x)) a b` evaluates to `a`.
 pub fn eval(term: &Term) -> Term {
-    term.clone()
+    // term.clone()
     // TODO: "Implement the eval function")
+    match term {
+        Term::Var(var) => var(var.clone()),
+        Term::Abs(input, body) => abs(input, *body.clone()),
+        Term::App(left, right) => {
+            let left_eval = eval(left);
+            let right_eval = eval(right);
+            
+        }
+    }
 }
 
 
